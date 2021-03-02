@@ -1,0 +1,74 @@
+public class Quiz {
+    public static void main(String[] args) throws InterruptedException {
+        
+      JFrame window = new JFrame ("Quiz Game") ;  
+      window.setSize(800,500);
+      window.setLocationRelativeTo(null);
+      window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      window.setResizable(false);
+
+    while (true) {  
+      
+      int nbr =0 , score=0 , m=0 , s=0 ;
+      int time = 60 ; //sec  
+        
+      welcomePage welcome = new welcomePage (window);
+      welcome.choose(time);
+        
+        quiz2 [] qObj = {
+            new quiz2("Question 1","op1","op2","op3","op4","op1","pista 1"),
+            new quiz2("Question 2","op1","op2","op3","op4","op4","pista 2"),
+            new quiz2("Question 3","op1","op2","op3","op4","op3","pista 3"),
+            new quiz2("Question 4","op1","op2","op3","op4","op2","pista 4")
+            new quiz2("Question 5","op1","op2","op3","op4","op2","pista 4")
+            new quiz2("Question 6","op1","op2","op3","op4","op2","pista 4")
+
+
+        };
+        
+        while (nbr != qObj.length && s<time ) {
+            questions quiz = new questions(qObj[nbr], window);
+            quiz.getAnswer(time); 
+            m = quiz.getTime().M ;
+            s = quiz.getTime().S ;
+            score = quiz.getScore();
+            if (nbr == qObj.length-1 || (s==time)) quiz.Reset();
+            nbr++ ;
+        }
+        
+        int nbrQ = qObj.length ;  
+        scorePane scorePane = new scorePane (window,score,nbrQ) ;
+        scorePane.choose();
+     
+     }    
+      
+    }    
+}
+
+
+
+class quiz2 {
+    
+    String pregunta ,
+            op1 ,
+            op2 ,
+            op3 , 
+            op4 ,
+            op5,
+            op6,
+            respuesta_correcta ,
+            pista;
+    
+    quiz2 (String pregunta , String op1 , String op2 ,String op3, String op4 , String respuesta , String pista) {
+        this.pregunta = pregunta ;
+        this.op1 = op1;
+        this.op2 = op2;
+        this.op3 = op3 ;
+        this.op4 = op4 ;
+        this.op5 = op5 ;
+        this.op6 = op6 ;
+
+        this.respuesta_correcta = respuesta ;
+        this.pista = pista ;
+    }
+}
